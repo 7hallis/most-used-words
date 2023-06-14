@@ -22,6 +22,7 @@
 
 <script>
 import PillComponent from './PillComponent.vue'
+import { ipcRenderer } from 'electron'
 export default {
         components: {
             PillComponent
@@ -29,17 +30,18 @@ export default {
         data: function(){
             return {
                 files:[],
-                groupedWords: [
-                    {word:"i", amount:547},
-                    {word:"you", amount:478},
-                    {word:"it", amount:10},
-                ]
+                groupedWords: []
             }
 
         },
         methods: {
             processSubtitles() {
-                console.log(this.files)
+                let paths = this.files.map(f=>f.path)
+                ipcRenderer.send("process-subtitles", paths)
+                ipcRenderer.on("process-subtitles", (event, resp)=>{
+                    this.groupedWords = resp
+                })
+                
             }
         }
     }

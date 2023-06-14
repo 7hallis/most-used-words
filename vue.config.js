@@ -1,10 +1,10 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true,
+// const { defineConfig } = require('@vue/cli-service')
+// module.exports = defineConfig({
+//   "transpileDependencies": [ "vuetify" ],
+//   pluginOptions: { electronBuilder: { nodeIntegration:true }}
+// })
 
-  pluginOptions: {
-    vuetify: {
-			// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
-		}
-  }
-})
+module.exports = {  
+    "transpileDependencies": [ "vuetify" ],
+    pluginOptions: { electronBuilder: { nodeIntegration:true }}
+}
